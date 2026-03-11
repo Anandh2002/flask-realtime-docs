@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collaborative Editor</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <h2 contenteditable="true" id="doc-title">{{ doc.title }}</h2>
+    <textarea id="editor" style="width:100%; height:400px;"></textarea>
+
+    <script>
+        const socket = io();
+
+        // Get docId from Flask template variable
+        const docId = "{{ doc.id }}";
+
+        const editor = document.getElementById('editor');
+        const titleEl = document.getElementById('doc-title');
+
+        // Join the document room
+        socket.emit('join', { doc_id: docId });
+
+        // Load document content when joining
+        socket.on('load_document', (data) => {
+            editor.value = data.content || '';
+        });
+
+        // Receive updates from other users
+        socket.on('remote_update', (data) => {
+            editor.value = data.content || '';
+        });
+
+        // Receive remote title updates
+        socket.on('remote_title_update', (data) => {
+            if (parseInt(docId) === data.doc_id) {
+                titleEl.textContent = data.title || '';
+            }
+        });
+
+
+        // Send title update on blur
+        titleEl.addEventListener('blur', () => {
+            socket.emit('title_update', {
+                doc_id: parseInt(docId),
+                title: titleEl.textContent
+            });
+        });
+
+
+        // Press Enter to save title & remove focus
+        titleEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                titleEl.blur();
+            }
+        });
+
+        // Send updates when typing
+        editor.addEventListener('input', () => {
+            socket.emit('editor_update', {
+                doc_id: docId,
+                content: editor.value
+            });
+        
+        });
+
+        // Leave room when page is closed
+        window.addEventListener('beforeunload', () => {
+            socket.emit('leave', { doc_id: docId });
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

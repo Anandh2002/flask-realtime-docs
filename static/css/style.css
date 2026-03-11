@@ -1,0 +1,299 @@
+/* Reset styles */
+body, h2, p, label, input, button {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #111010; /* Soft light gray */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.login-container {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    width: 350px;
+    text-align: center;
+}
+
+/* Heading */
+.login-container h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    text-align: left;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+input {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #888;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button */
+button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #555;
+}
+
+/* Register link */
+.register-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.register-link a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Base Styles ===== */
+body {
+    background-color: #111010;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Heading */
+h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* ===== Container ===== */
+.doc-container {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    width: 500px;
+    margin: 2rem auto;
+}
+
+/* ===== Form ===== */
+form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+form input {
+    flex: 1;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #888;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+form button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #555;
+}
+
+/* ===== Document List ===== */
+#doc-list {
+    list-style: none;
+    padding: 0;
+}
+
+#doc-list li {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: #f7f7f7;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+#doc-list li:hover {
+    background: #eaeaea;
+}
+
+#doc-list a {
+    text-decoration: none;
+    color: #333;
+}
+
+.doc-title {
+    outline: none;
+    cursor: text;
+}
+
+.doc-title[contenteditable="true"]:focus {
+    background: #fff3c4;
+    border-radius: 4px;
+    padding: 0 2px;
+}
+
+/* ===== Header ===== */
+.site-header {
+    background: #1b1b1b;
+    padding: 0.8rem 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info {
+    color: #f5f5f5;
+    font-size: 0.95rem;
+}
+
+.logout-btn {
+    background: #333;
+    color: white;
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+    background: #555;
+}
+
+/* ===== Main Content Alignment ===== */
+.main-content {
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== Added Styles for Default Dark Mode ===== */
+
+/* Dark card variant for better match with dark background */
+.dark-card {
+    background: #1b1b1b;
+    color: #f5f5f5;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Apply dark mode version to doc-container by default */
+.doc-container {
+    background: #1b1b1b;
+    color: #f5f5f5;
+}
+
+/* Dark mode inputs */
+form input,
+.login-form input {
+    background: #2a2a2a;
+    color: #f5f5f5;
+    border: 1px solid #444;
+}
+
+form input::placeholder,
+.login-form input::placeholder {
+    color: #aaa;
+}
+
+/* Dark mode buttons */
+form button,
+.login-form button,
+.logout-btn {
+    background: #333;
+    color: #f5f5f5;
+}
+
+form button:hover,
+.login-form button:hover,
+.logout-btn:hover {
+    background: #555;
+}
+
+/* Document list in dark mode */
+#doc-list li {
+    background: #2a2a2a;
+    color: #f5f5f5;
+}
+
+#doc-list li:hover {
+    background: #3a3a3a;
+}
+
+#doc-list a {
+    color: #f5f5f5;
+}
+
+/* Editable title focus in dark mode */
+.doc-title[contenteditable="true"]:focus {
+    background: #444;
+    color: #fff;
+}
+
+/* Make header sticky by default */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}

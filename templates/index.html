@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block body %}
+  <h1>Documents</h1>
+  <form action="{{ url_for('create_doc') }}" method="post">
+    <input name="title" placeholder="New doc title">
+    <button type="submit">Create</button>
+  </form>
+  
+  <ul id="doc-list">
+    {% for d in docs %}
+      <li>
+        <a href="{{ url_for('editor', doc_id=d.id) }}" target="_blank">
+          <span contenteditable="true" class="doc-title" data-id="{{ d.id }}">{{ d.title }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+  <script>
+    const socket = io();
+
+    document.querySelectorAll('.doc-title').forEach(el => {
+      el.addEventListener('blur', () => {
+        socket.emit('title_update', {
+          doc_id: el.dataset.id,
+          title: el.textContent
+        });
+      });
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          el.blur();
+        }
+      });
+    });
+
+    socket.on('remote_title_update', (data) => {
+      const el = document.querySelector(`.doc-title[data-id='${data.doc_id}']`);
+      if (el) {
+        el.textContent = data.title;
+      }
+    });
+  </script>
+{% endblock %}
